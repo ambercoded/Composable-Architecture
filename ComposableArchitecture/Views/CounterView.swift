@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CounterView: View {
-    @ObservedObject var state: AppState
+    @ObservedObject var store: Store<AppState>
 
     @State private var showingModal = false
     @State private var showingAlert = false
@@ -19,9 +19,9 @@ struct CounterView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: { self.state.count -= 1 }) { Text("-")}
-                Text("\(self.state.count)")
-                Button(action: { self.state.count += 1 }) { Text("+")}
+                Button(action: { self.store.value.count -= 1 }) { Text("-")}
+                Text("\(self.store.value.count)")
+                Button(action: { self.store.value.count += 1 }) { Text("+")}
             }
             
             Button(action: { showingModal.toggle() }) { Text("Ist das eine Primzahl?")}
@@ -30,17 +30,17 @@ struct CounterView: View {
                 showingAlert.toggle()
                 isNthPrimeButtonDisabled = true
                 
-                nthPrimeMock(self.state.count) { result in
+                nthPrimeMock(self.store.value.count) { result in
                     self.resultPrime = result
                     isNthPrimeButtonDisabled = false
                 }
-            }) { Text("Was ist die \(self.state.count) Primzahl?")}
+            }) { Text("Was ist die \(self.store.value.count) Primzahl?")}
             .disabled(isNthPrimeButtonDisabled)
         }
         .font(.title)
         .navigationTitle("Zähler")
         .sheet(isPresented: $showingModal) {
-            IsPrimeModalView(state: state)
+            IsPrimeModalView(store: self.store)
         }
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("The answer is always \(resultPrime ?? -1)"))
@@ -50,6 +50,6 @@ struct CounterView: View {
 
 struct CounterView_Previews: PreviewProvider {
     static var previews: some View {
-        CounterView(state: AppState())
+        CounterView(store: Store(initialValue: AppState()))
     }
 }

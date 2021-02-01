@@ -7,11 +7,11 @@
 
 import Foundation
 
-class AppState: ObservableObject {
-    @Published var count: Int = 0
-    @Published var favoritePrimes: [Int] = []
-    @Published var loggedInUser: User?
-    @Published var activityFeed: [Activity] = []
+struct AppState {
+    var count: Int = 0
+    var favoritePrimes: [Int] = []
+    var loggedInUser: User?
+    var activityFeed: [Activity] = []
     
     struct Activity {
         let timestamp: Date
@@ -29,3 +29,13 @@ class AppState: ObservableObject {
         let bio: String
     }
 }
+
+final class Store<Value>: ObservableObject {
+    @Published var value: Value
+    
+    init(initialValue: Value) {
+        self.value = initialValue
+    }
+}
+
+// Store<AppState>
