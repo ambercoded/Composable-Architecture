@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IsPrimeModalView: View {
-    @ObservedObject var store: Store<AppState, CounterAction>
+    @ObservedObject var store: Store<AppState, AppAction>
     
     var body: some View {
         VStack {
@@ -17,16 +17,11 @@ struct IsPrimeModalView: View {
                 
                 if self.store.value.favoritePrimes.contains(self.store.value.count) {
                     Button(action: {
-                        self.store.value.favoritePrimes.removeAll(where: { $0 == self.store.value.count })
-                        self.store.value.activityFeed.append(.init(timestamp: Date(), activityType: .addedFavoritePrime(self.store.value.count)))
-                    }) {
+                            store.send(.primeModal(.addToFavoritePrimesTapped)) }) {
                         Text("Remove from favorite primes")
                     }
                 } else {
-                    Button(action: {
-                        self.store.value.favoritePrimes.append(self.store.value.count)
-                        self.store.value.activityFeed.append(AppState.Activity.init(timestamp: Date(), activityType: .removedFavoritePrime(self.store.value.count)))
-                    }) {
+                    Button(action: { store.send(.primeModal(.removeFromFavoritePrimesTapped))}) {
                         Text("Add to favorite primes")
                     }
                 }

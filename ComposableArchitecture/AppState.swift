@@ -45,21 +45,50 @@ final class Store<Value, Action>: ObservableObject { // Store<AppState>
 }
 
 // MARK: - Reducer Actions
-enum CounterAction {
-    case decreaseTapped
-    case increaseTapped
-}
-
-enum PrimeModalAction {
-    case addToFavoritePrimesTapped(Int)
-    case removeFromFavoritePrimesTapped(Int)
-}
-
-func counterReducer(state: inout AppState, action: CounterAction) {
-    switch action {
-    case .decreaseTapped:
-        state.count -= 1
-    case .increaseTapped:
-        state.count += 1
+enum AppAction {
+    case counter(CounterAction)
+    case primeModal(PrimeModalAction)
+    case favoritePrimes(FavoritePrimesAction)
+    
+    enum CounterAction {
+        case decreaseTapped
+        case increaseTapped
     }
+    
+    enum PrimeModalAction {
+        case addToFavoritePrimesTapped
+        case removeFromFavoritePrimesTapped
+    }
+    
+    enum FavoritePrimesAction {
+        case deleteFavoritePrimes(IndexSet)
+    }
+}
+
+
+
+func appReducer(state: inout AppState, action: AppAction) {
+    switch action {
+    case .counter(.decreaseTapped):
+        state.count -= 1
+        
+    case .counter(.increaseTapped):
+        state.count += 1
+        
+    case .primeModal(.addToFavoritePrimesTapped):
+        state.favoritePrimes.removeAll(where: { $0 == state.count })
+        state.activityFeed.append(.init(timestamp: Date(), activityType: .addedFavoritePrime(state.count)))
+        
+    case .primeModal(.removeFromFavoritePrimesTapped):
+        state.favoritePrimes.append(state.count)
+        state.activityFeed.append(.init(timestamp: Date(), activityType: .removedFavoritePrime(state.count)))
+        
+    case let .favoritePrimes(.deleteFavoritePrimes(indexSet)):
+        for index in indexSet {
+            let prime = state.favoritePrimes[index]
+            state.favoritePrimes.remove(at: index)
+            state.activityFeed.append(.init(timestamp: Date(), activityType: .removedFavoritePrime(prime)))
+        }
+    }
+    
 }
