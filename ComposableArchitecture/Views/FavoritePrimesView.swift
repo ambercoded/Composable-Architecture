@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavoritePrimesView: View {
-    @ObservedObject var store: Store<AppState>
+    @ObservedObject var store: Store<AppState, CounterAction>
     
     var body: some View {
         List {
@@ -22,11 +22,5 @@ struct FavoritePrimesView: View {
             }
         }
         .navigationTitle("Lieblingsprimzahlen")
-    }
-}
-
-struct FavoritePrimesView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoritePrimesView(store: Store(initialValue: AppState()))
     }
 }
