@@ -15,6 +15,12 @@
 		970C903225C8173400D01F49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 970C903025C8173400D01F49 /* LaunchScreen.storyboard */; };
 		970C903D25C8173500D01F49 /* ComposableArchitectureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970C903C25C8173500D01F49 /* ComposableArchitectureTests.swift */; };
 		970C904825C8173500D01F49 /* ComposableArchitectureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970C904725C8173500D01F49 /* ComposableArchitectureUITests.swift */; };
+		970C905925C8175000D01F49 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970C905825C8175000D01F49 /* AppState.swift */; };
+		970C905E25C8178200D01F49 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970C905D25C8178200D01F49 /* CounterView.swift */; };
+		970FB75925C8194600C8639C /* IsPrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970FB75825C8194600C8639C /* IsPrimeModalView.swift */; };
+		970FB75F25C81A1000C8639C /* WolframAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970FB75E25C81A1000C8639C /* WolframAlpha.swift */; };
+		970FB76825C81A9800C8639C /* PrimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970FB76725C81A9800C8639C /* PrimeHelper.swift */; };
+		97AB62D825C81FCB00107A7C /* FavoritePrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB62D725C81FCB00107A7C /* FavoritePrimesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		970C904325C8173500D01F49 /* ComposableArchitectureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposableArchitectureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		970C904725C8173500D01F49 /* ComposableArchitectureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureUITests.swift; sourceTree = "<group>"; };
 		970C904925C8173500D01F49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		970C905825C8175000D01F49 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		970C905D25C8178200D01F49 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		970FB75825C8194600C8639C /* IsPrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeModalView.swift; sourceTree = "<group>"; };
+		970FB75E25C81A1000C8639C /* WolframAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolframAlpha.swift; sourceTree = "<group>"; };
+		970FB76725C81A9800C8639C /* PrimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeHelper.swift; sourceTree = "<group>"; };
+		97AB62D725C81FCB00107A7C /* FavoritePrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +111,12 @@
 		970C902425C8173200D01F49 /* ComposableArchitecture */ = {
 			isa = PBXGroup;
 			children = (
+				970C906225C8184200D01F49 /* Views */,
+				970FB76625C81A8D00C8639C /* Helpers */,
+				970FB75D25C819FF00C8639C /* Wolfram */,
 				970C902525C8173200D01F49 /* AppDelegate.swift */,
 				970C902725C8173200D01F49 /* SceneDelegate.swift */,
-				970C902925C8173200D01F49 /* ContentView.swift */,
+				970C905825C8175000D01F49 /* AppState.swift */,
 				970C902B25C8173400D01F49 /* Assets.xcassets */,
 				970C903025C8173400D01F49 /* LaunchScreen.storyboard */,
 				970C903325C8173400D01F49 /* Info.plist */,
@@ -134,6 +149,33 @@
 				970C904925C8173500D01F49 /* Info.plist */,
 			);
 			path = ComposableArchitectureUITests;
+			sourceTree = "<group>";
+		};
+		970C906225C8184200D01F49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				970C902925C8173200D01F49 /* ContentView.swift */,
+				970FB75825C8194600C8639C /* IsPrimeModalView.swift */,
+				970C905D25C8178200D01F49 /* CounterView.swift */,
+				97AB62D725C81FCB00107A7C /* FavoritePrimesView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		970FB75D25C819FF00C8639C /* Wolfram */ = {
+			isa = PBXGroup;
+			children = (
+				970FB75E25C81A1000C8639C /* WolframAlpha.swift */,
+			);
+			path = Wolfram;
+			sourceTree = "<group>";
+		};
+		970FB76625C81A8D00C8639C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				970FB76725C81A9800C8639C /* PrimeHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				970C902625C8173200D01F49 /* AppDelegate.swift in Sources */,
+				970FB76825C81A9800C8639C /* PrimeHelper.swift in Sources */,
 				970C902825C8173200D01F49 /* SceneDelegate.swift in Sources */,
+				97AB62D825C81FCB00107A7C /* FavoritePrimesView.swift in Sources */,
 				970C902A25C8173200D01F49 /* ContentView.swift in Sources */,
+				970FB75F25C81A1000C8639C /* WolframAlpha.swift in Sources */,
+				970C905925C8175000D01F49 /* AppState.swift in Sources */,
+				970FB75925C8194600C8639C /* IsPrimeModalView.swift in Sources */,
+				970C905E25C8178200D01F49 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
